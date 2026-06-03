@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import artwork6 from '../assets/images/artwork-6.webp';
+import artwork10 from '../assets/images/artwork-10.png';
 import artwork7 from '../assets/images/artwork-7.webp';
 import artwork9 from '../assets/images/artwork-9.webp';
 
 const Hero = () => {
   const [current, setCurrent] = useState<number>(0);
 
-  const slides = [artwork6, artwork7, artwork9];
+  const slides = [artwork7, artwork9, artwork10];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,8 +35,8 @@ const Hero = () => {
       <div className="absolute inset-0 bg-linear-to-t from-black/45 via-black/10 to-transparent z-10"></div>
 
       <div className="absolute max-w-340 px-4 w-full left-1/2 -translate-x-1/2 bottom-5 sm:bottom-10 flex justify-start flex-col z-20 text-left">
-        <h1 className="text-[#F5F1EA] font-[Allerta_Stencil] text-4xl sm:text-[50px] uppercase">
-          Mural Studio
+        <h1 className="text-[#F5F1EA] text-4xl sm:text-[50px] uppercas">
+          Volume Studio
         </h1>
         <p className="max-w-100 text-lg sm:text-xl text-[#F5F1EA] mt-2">
           Contemporary murals

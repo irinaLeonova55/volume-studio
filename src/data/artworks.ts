@@ -7,6 +7,7 @@ import artwork6 from '../assets/images/artwork-6.png';
 import artwork7 from '../assets/images/artwork-7.png';
 import artwork8 from '../assets/images/artwork-8.png';
 import artwork9 from '../assets/images/artwork-9.png';
+import artwork11 from '../assets/images/artwork-11.png';
 
 export type Artwork = {
   id: number;
@@ -53,13 +54,13 @@ export const artworks: Artwork[] = [
   },
   {
     id: 3,
-    title: 'Mediterranean Reverie',
+    title: 'Tropical Nocturne',
     description:
-      'A monumental wall mural inspired by Mediterranean mythology, artisanal ornamentation, and contemporary naïve illustration. The interior combines warm wood textures, soft natural light, and earthy materials to create an intimate yet refined atmosphere. Flowing lines and symbolic figures form a cohesive visual narrative where art and architecture merge into a single spatial experience. The palette of ochre, terracotta, olive, and deep burgundy enhances the warmth of the space while giving the mural a timeless character. The composition evokes a sense of calm, storytelling, and understated theatricality.',
+      'A large-scale mural inspired by tropical landscapes and botanical gardens, reinterpreted through a contemporary artistic lens. Layered foliage, vibrant blooms, and deep shadowed backgrounds create a sense of immersion, transforming the interior into a living environment rather than a conventional hospitality space. The composition balances bold color accents with refined detailing, adding depth and visual rhythm without overwhelming the architecture. Designed to complement natural materials and modern furnishings, the mural becomes a central element of the guest experience. The artwork establishes a distinctive identity for the venue while maintaining an elegant and timeless atmosphere.',
     spaceType: 'Café',
     spaceTypeText: 'Café Interior',
     technique: 'Fresco-inspired Acrylics',
-    heroImage: artwork3,
+    heroImage: artwork11,
     location: 'Paris, France',
     year: 2026,
     slug: 'mediterranean-reverie',
@@ -68,7 +69,7 @@ export const artworks: Artwork[] = [
 
   {
     id: 4,
-    title: 'Crimson Hospitality Lounge',
+    title: 'Green Hospitality Lounge',
     description:
       'A richly layered mural inspired by organic ornamentation, ceremonial symbolism, and handcrafted mosaic compositions. Intricate flowing patterns, fragmented geometric forms, and tactile circular accents spread across the wall like a contemporary tapestry, creating depth and visual rhythm within the intimate interior. Saturated tones of deep crimson, terracotta, muted teal, and dark espresso interact with warm ambient lighting, giving the space a cinematic and immersive atmosphere. The mural blurs the boundary between decorative surface and architectural installation, transforming the lounge into a sensory experience shaped by texture, shadow, and color. Its dense composition evokes the feeling of discovering hidden symbols within a modern urban sanctuary.',
     spaceType: 'Lounge',
@@ -150,5 +151,19 @@ export const artworks: Artwork[] = [
     year: 2024,
     slug: 'silent-canopy',
     keywords: ['hospitality'],
+  },
+  {
+    id: 10,
+    title: 'Mediterranean Reverie',
+    description:
+      'A monumental wall mural inspired by Mediterranean mythology, artisanal ornamentation, and contemporary naïve illustration. The interior combines warm wood textures, soft natural light, and earthy materials to create an intimate yet refined atmosphere. Flowing lines and symbolic figures form a cohesive visual narrative where art and architecture merge into a single spatial experience. The palette of ochre, terracotta, olive, and deep burgundy enhances the warmth of the space while giving the mural a timeless character. The composition evokes a sense of calm, storytelling, and understated theatricality.',
+    spaceType: 'Café',
+    spaceTypeText: 'Café Interior',
+    technique: 'Fresco-inspired Acrylics',
+    heroImage: artwork3,
+    location: 'Paris, France',
+    year: 2026,
+    slug: 'mediterranean-reverie',
+    keywords: ['Fresco', 'Café'],
   },
 ];

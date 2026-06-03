@@ -10,7 +10,7 @@ const SelectedProjects = () => {
       </h2>
 
       <div className="flex flex-col w-full gap-10">
-        {artworks.slice(0, 4).map((artwork) => (
+        {artworks.slice(0, 3).map((artwork) => (
           <SelectedProject
             key={artwork.id}
             title={artwork.title}

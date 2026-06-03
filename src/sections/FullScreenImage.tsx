@@ -27,11 +27,11 @@ const FullScreenImage = () => {
             className="w-full h-full object-cover scale-110"
           />
 
-          <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/50 to-black/10 scale-110" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/50 to-transperent scale-110" />
         </motion.div>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-3">
-          <h2 className="flex flex-col items-center justify-center text-3xl sm:text-4xl text-center text-[#F5F1EA]">
+          <h2 className="flex flex-col items-center justify-center max-w-120 text-3xl sm:text-4xl text-center text-[#F5F1EA]">
             Murals, objects and surfaces designed for contemporary spaces.
           </h2>
           <Link
