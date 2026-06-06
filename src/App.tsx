@@ -12,6 +12,7 @@ import Contacts from './pages/Contacts';
 import SmoothScroll from './components/SmothScroll';
 import ScrollToTop from './components/ScrollToTop';
 import ThankYou from './pages/ThankYou';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/collection/:slug" element={<ArtworkPage />} />
           <Route path="/thank-you" element={<ThankYou />} />
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Router>
