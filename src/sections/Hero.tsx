@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import artwork2 from '../assets/images/artwork-2.png';
 import artwork8 from '../assets/images/artwork-8.png';
 import artwork12 from '../assets/images/artwork-12.png';
