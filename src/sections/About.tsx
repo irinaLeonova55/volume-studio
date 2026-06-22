@@ -1,9 +1,9 @@
 const About = () => {
   return (
     <section className="w-full relative z-20 bg-white">
-      <div className="max-w-340 px-4 mx-auto pt-10 sm:pt-24">
+      <div className="max-w-340 px-4 mx-auto pt-20 sm:pt-30">
         <div className="flex flex-col justify-center max-w-2xl w-full mx-auto">
-          <h1 className="w-full text-3xl sm:text-4xl font-medium text-center  mb-4 sm:mb-6">
+          <h1 className="w-full text-2xl sm:text-4xl uppercase text-center  mb-4 sm:mb-6">
             About
           </h1>
 

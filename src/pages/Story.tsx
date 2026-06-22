@@ -4,12 +4,10 @@ const Story = () => {
   return (
     <section className="max-w-360 px-4 mx-auto pt-10 sm:pt-24 mb-25 sm:mb-62">
       <div className="flex flex-col justify-center max-w-2xl w-full mx-auto">
-        <h1 className="w-full text-3xl sm:text-4xl font-medium text-center mb-6">
+        <h1 className="w-full text-lg sm:text-4xl uppercase mt-4 text-center mb-6">
           Our Story
         </h1>
-        <p className="text-center text-xl mb-5 sm:mb-10">
-          Art Integrated Into Architecture
-        </p>
+
         <p className="mb-5 sm:mb-10">
           Our studio specializes in contemporary mural design for architectural
           and public spaces worldwide. We collaborate with architects, interior
@@ -31,7 +29,9 @@ const Story = () => {
           landmarks.
         </p>
 
-        <h2 className="text-2xl text-center mb-6">Our Artists</h2>
+        <h2 className="text-lg sm:text-xl font-medium uppercase tracking-wide text-center mb-6">
+          Our Artists
+        </h2>
         <img
           src={artists}
           alt="About studio"

@@ -38,7 +38,7 @@ const ArtworkPage = () => {
       <img
         src={artwork.heroImage}
         alt={artwork.title}
-        className="w-full h-[70svh] lg:h-[90vh] object-cover object-center mb-5"
+        className="w-full h-[70svh] lg:h-[80vh] object-cover object-center mb-5"
       />
       <section className="max-w-318 px-4 mx-auto py-12">
         <div className="w-full mb-6">
@@ -49,7 +49,7 @@ const ArtworkPage = () => {
             ← Back
           </button>
         </div>
-        <h1 className="text-4xl text-center font-medium mb-10">
+        <h1 className="text-lg sm:text-4xl uppercase mt-4 text-center mb-10">
           {artwork.title}
         </h1>
         <div className="flex justify-center items-center mx-auto flex-col w-full max-w-160 gap-10">

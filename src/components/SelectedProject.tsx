@@ -21,22 +21,26 @@ const SelectedProject = ({
   return (
     <div className="flex flex-col w-full gap-0 sm:gap-0 pb-3 sm:pb-0">
       <Link to={`/collection/${slug}`}>
-        <div className="relative w-full flex flex-col-reverse sm:grid sm:grid-cols-[2fr_2fr] gap-2 sm:gap-0">
+        <div className="relative w-full flex flex-col-reverse sm:grid sm:grid-cols-[1fr_1fr] gap-6 sm:gap-4">
           <div className="md:sticky md:top-25 md:h-12 w-full grid grid-cols-1 sm:grid-cols-2 sm:gap-3">
             <div className="block w-full">
-              <p className="text-2xl font-medium">{title}</p>
-              <p className="text">{spaceTypeText}</p>
+              <p className="text-lg sm:text-xl font-medium uppercase tracking-wide">
+                {title}
+              </p>
+              <p className="text-xs uppercase font-medium tracking-wide">
+                {spaceTypeText}
+              </p>
             </div>
             <div className="w-full">
-              <p>{location}</p>
               <p>{technique}</p>
+              <p>{location}</p>
             </div>
           </div>
-          <div className="w-full aspect-square rounded-lg overflow-hidden">
+          <div className="w-full h-auto rounded-xs overflow-hidden">
             <img
               src={heroImage}
               loading="lazy"
-              className="w-full h-full object-cover transform-gpu animate-[cinematic_14s_ease-in-out_infinite]"
+              className="w-full aspect-square object-cover transform-gpup animate-[cinematic_14s_ease-in-out_infinite]"
             />
           </div>
         </div>

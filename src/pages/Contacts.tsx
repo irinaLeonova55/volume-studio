@@ -9,7 +9,7 @@ const Contacts = () => {
   return (
     <section className="max-w-360 px-4 mx-auto pt-10 sm:pt-24 mb-25 sm:mb-62">
       <div className="flex flex-col justify-center items-center max-w-140 w-full mx-auto">
-        <h1 className="w-full text-4xl font-medium text-center mb-6">
+        <h1 className="w-full text-lg sm:text-4xl uppercase mt-4 text-center mb-6">
           Contact us
         </h1>
         <p className="text-center text-xl mb-12 sm:mb-27">

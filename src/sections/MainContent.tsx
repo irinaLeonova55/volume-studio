@@ -117,7 +117,6 @@ const MainContent = () => {
               spaceTypeText={artwork.spaceTypeText}
               technique={artwork.technique}
               slug={artwork.slug}
-              extrastyle="h-65"
             />
           ))}
         </div>

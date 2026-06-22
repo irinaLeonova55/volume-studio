@@ -11,9 +11,9 @@ const Home = () => {
     <>
       <Hero />
       <SelectedProjects />
-      <FullScreenImage />
+      {/*<FullScreenImage />*/}
       <About />
-      <Process />
+      {/*<Process />*/}
       <Cta />
     </>
   );

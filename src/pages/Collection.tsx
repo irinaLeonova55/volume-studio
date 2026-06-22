@@ -10,8 +10,10 @@ const Collection = () => {
   const [openFilters, setOpenFilters] = useState<boolean>(false);
 
   return (
-    <section className="max-w-340 px-4 mx-auto pt-4 md:pt-24">
-      <h1 className="text-4xl font-medium mt-4">Collection</h1>
+    <section className="max-w-480 px-4 mx-auto pt-4 md:pt-12">
+      <h1 className="text-2xl sm:text-4xl uppercase mt-4 text-center">
+        Collection
+      </h1>
       <div className="block sm:hidden">
         <button
           onClick={() => setOpenFilters(!openFilters)}
@@ -44,8 +46,8 @@ const Collection = () => {
         )}
       </div>
 
-      <div className="flex gap-9 w-full pt-9">
-        <aside className="hidden md:block w-65 h-full">
+      <div className="flex gap-10 w-full pt-20">
+        <aside className="hidden md:block w-1/4 h-full">
           <Filters />
         </aside>
 

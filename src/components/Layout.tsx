@@ -36,7 +36,7 @@ const Layout = () => {
   return (
     <div className="w-full mx-auto min-h-full">
       <Header openBurger={() => setIsBurger(true)} />
-      <main>
+      <main className="bg-white">
         <Outlet context={{ setIsModalOpen }} />
       </main>
       <Footer />

@@ -27,7 +27,7 @@ const FullScreenImage = () => {
             className="w-full h-full object-cover scale-110"
           />
 
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/50 to-transperent scale-110" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/70 to-transperent scale-110" />
         </motion.div>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-3">
