@@ -21,7 +21,11 @@ const Hero = () => {
   return (
     <section className="relative h-auto overflow-hidden">
       <div className="max-w-480 mx-auto px-4 w-full flex justify-start flex-col z-20 text-left pt-10">
-        <img src={volumestudio} alt="Volume Studio" className="w-full h-auto" />
+        <img
+          src={volumestudio}
+          alt="Volume Studio"
+          className="w-full h-auto opacity-95"
+        />
 
         {/*<h1 className="text-black text-[clamp(4rem,11vw,12rem)] leading-[0.9] tracking-wide text-center uppercase font-[Allerta_Stencil] font-bol">
           Volume

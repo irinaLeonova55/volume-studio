@@ -16,7 +16,11 @@ const Header = ({ openBurger }: BurgerProps) => {
             {/*<div className="font-[Allerta_Stencil text-lg sm:text-xl font-medium tracking-wide uppercase focus:outline-none">
             <span className="text-[#A18A68]">V</span>murals
           </div>*/}
-            <img src={logo} alt="Volume Studio" className="w-8 h-auto" />
+            <img
+              src={logo}
+              alt="Volume Studio"
+              className="w-8 h-auto opacity-80"
+            />
           </a>
           <div className="hidden md:flex justify-center">
             <Navbar extrastyle="gap-10" />
