@@ -1,19 +1,31 @@
-import emailIcon from '../assets/icons/email.svg';
-import linkedinIcon from '../assets/icons/linkedin.svg';
-import facebookIcon from '../assets/icons/facebook.svg';
-import instagramIcon from '../assets/icons/instagram.svg';
+import { SlEnvolope, SlSocialLinkedin, SlSocialInstagram, SlSocialFacebook } from 'react-icons/sl';
+import { type ComponentType } from 'react';
 
-const socialIcons = [emailIcon, linkedinIcon, instagramIcon, facebookIcon];
+interface SocialItem {
+  name: string;
+  href: string;
+  icon: ComponentType<{ className?: string }>;
+  sizeClass: string;
+}
+
+const socialItems: SocialItem[] = [
+  { name: 'Email', href: 'mailto:studio@example.com', icon: SlEnvolope, sizeClass: 'w-4 h-4 stroke-[1.25]' },
+  { name: 'LinkedIn', href: '/', icon: SlSocialLinkedin, sizeClass: 'w-5 h-5' },
+  { name: 'Instagram', href: '/', icon: SlSocialInstagram, sizeClass: 'w-4 h-4' },
+  { name: 'Facebook', href: '/', icon: SlSocialFacebook, sizeClass: 'w-5 h-5' },
+];
 
 const Social = () => {
   return (
     <div className="flex justify-start gap-3 sm:gap-7 items-end">
-      {socialIcons.map((icon, index) => (
-        <a key={index} href="/" className="hover:opacity-70">
-          <img
-            src={icon}
-            className={`w-auto ${index === 0 || index === 2 ? 'h-4' : 'h-4.5'}`}
-          />
+      {socialItems.map(({ name, href, icon: Icon, sizeClass }) => (
+        <a
+          key={name}
+          href={href}
+          aria-label={name}
+          className="text-[#6E6963] hover:text-[#F2EFE9] transition-colors duration-200"
+        >
+          <Icon className={sizeClass} />
         </a>
       ))}
     </div>

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
+import Button from '../components/Button';
 
-import artwork2 from '../assets/images/artwork-2.png';
-import artwork8 from '../assets/images/artwork-8.png';
-import artwork12 from '../assets/images/artwork-12.png';
-import volumestudio from '../assets/images/volumestudio.svg';
+import aphrodite from '../assets/images/aphrodite.png'
+import hercules from '../assets/images/hercules.png'
+import folds from '../assets/images/folds.png'
+
 
 const Hero = () => {
   const [current, setCurrent] = useState<number>(0);
 
-  const slides = [artwork2, artwork12, artwork8];
+  const slides = [aphrodite, hercules, folds];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,32 +21,13 @@ const Hero = () => {
 
   return (
     <section className="relative h-auto overflow-hidden">
-      <div className="max-w-480 mx-auto px-4 w-full flex justify-start flex-col z-20 text-left pt-10">
-        <img
-          src={volumestudio}
-          alt="Volume Studio"
-          className="w-full h-auto opacity-95"
-        />
+      <div className="max-w-480 mx-auto px-4 w-full flex justify-start flex-col z-20 text-left">
 
-        {/*<h1 className="text-black text-[clamp(4rem,11vw,12rem)] leading-[0.9] tracking-wide text-center uppercase font-[Allerta_Stencil] font-bol">
-          Volume
-        </h1>*/}
-        <div className="flex mb-3 items-center justify-between gap-8 uppercas">
-          {/*<h1 className="max-w-70 text-lg sm:text-2xl text-black mt-10">
-            Contemporary murals
-          </h1>*/}
-          <p className="w-full max-w-140 mx-auto text-lg sm:text-3xl text-center mt-8">
-            Contemporary murals for architecture <br />
-            & public spaces
-          </p>
-          {/*<Link
-            to="/collection"
-            className="w-50 flex justify-center items-center h-8 border-black bg-transparent text-black font-medium rounded-sm mt-2 sm:mt-5 uppercase text-xs border cursor-pointer tracking-wide hover:bg-[#F5F1EA] hover:text-black"
-          >
-            View Collection
-          </Link>*/}
+        <div className="flex items-center justify-between gap-8">
         </div>
       </div>
+
+      <div className="absolute inset-0 bg-linear-to-t from-[#020202]/40 via-transparent to-transparent z-10"></div>
 
       <div
         className={`relative h-[70svh] lg:h-screen w-full transition-opacity duration-2000 ease-linear `}
@@ -55,14 +37,19 @@ const Hero = () => {
             key={index}
             src={slide}
             alt=""
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-linear ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-2000 ease-linear ${
               current === index ? 'opacity-100' : 'opacity-0'
             }`}
           />
         ))}
       </div>
 
-      {/*<div className="inset-0 bg-linear-to-b from-black/20 via-black/10 to-transparent z-10"></div>*/}
+
+      <div className='absolute inset-0 flex justify-end items-center flex-col mb-12 sm:mb-18 z-20'>
+        <h1 className='text-5xl sm:text-[80px] text-[#F2EFE9] font-normal text-center  leading-[0.98] sm:leading-[0.95] tracking-[-0.02em] sm:tracking-[-0.03em] mb-4 sm:mb-6 font-[Cormorant_Garamond]'>Sculpting Beyond Form</h1>
+        <p className='max-w-md text-center text-[#F2EFE9]/80 mb-7 sm:mb-9'>An&nbsp;exploration of&nbsp;material, form and space through the&nbsp;timeless art of&nbsp;sculpture.</p>
+        <Button size='sm' text='Collection' href='/collection'/>
+      </div>
     </section>
   );
 };

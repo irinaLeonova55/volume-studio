@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useFilter } from '../components/FilterContext';
+import { MoveRight, MoveLeft } from 'lucide-react';
+
 import BookCard from '../components/BookCard';
 import { artworks as initialArtworks } from '../data/artworks';
 import type { Artwork } from '../data/artworks';
-import previousArrow from '../assets/icons/previous-arrow.svg';
-import nextArrow from '../assets/icons/next-arrow.svg';
 
 const MainContent = () => {
   const {
     searchQuery,
-    selectedSpaceType,
-    selectedTechnique,
+    selectedSubject,
+    selectedCategory,
     selectedKeywords,
   } = useFilter();
 
@@ -23,15 +23,15 @@ const MainContent = () => {
   const filteredArtworks = useMemo(() => {
     let result = artworks;
 
-    if (selectedSpaceType) {
+    if (selectedSubject) {
       result = result.filter(
-        (artwork) => artwork.spaceType === selectedSpaceType,
+        (artwork) => artwork.subject === selectedSubject,
       );
     }
 
-    if (selectedTechnique) {
+    if (selectedCategory) {
       result = result.filter(
-        (artwork) => artwork.technique === selectedTechnique,
+        (artwork) => artwork.category === selectedCategory,
       );
     }
 
@@ -41,8 +41,8 @@ const MainContent = () => {
       result = result.filter(
         (artwork) =>
           artwork.title.toLowerCase().includes(query) ||
-          artwork.spaceType.toLowerCase().includes(query) ||
-          artwork.technique.toLowerCase().includes(query) ||
+          artwork.subject.toLowerCase().includes(query) ||
+          artwork.category.toLowerCase().includes(query) ||
           artwork.description.toLowerCase().includes(query) ||
           artwork.location.toLowerCase().includes(query) ||
           artwork.year.toString().includes(query),
@@ -58,8 +58,8 @@ const MainContent = () => {
     return result;
   }, [
     artworks,
-    selectedSpaceType,
-    selectedTechnique,
+    selectedSubject,
+    selectedCategory,
     searchQuery,
     selectedKeywords,
   ]);
@@ -97,7 +97,7 @@ const MainContent = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedTechnique, searchQuery, selectedSpaceType]);
+  }, [selectedCategory, searchQuery, selectedSubject]);
 
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
@@ -114,8 +114,8 @@ const MainContent = () => {
               id={artwork.id}
               title={artwork.title}
               image={artwork.heroImage}
-              spaceTypeText={artwork.spaceTypeText}
-              technique={artwork.technique}
+              subjectText={artwork.subjectText}
+              category={artwork.category}
               slug={artwork.slug}
             />
           ))}
@@ -129,7 +129,7 @@ const MainContent = () => {
               disabled={currentPage === 1}
               className="flex justify-center items-center cursor-pointer mr-2 opacity-50"
             >
-              <img src={previousArrow} alt="Previous" className="w-2 h-auto" />
+              <MoveLeft strokeWidth={1.25} className='w-10 h-6 text-[#A8A29C] hover:text-[#F2EFE9] hover:translate-x-1 transition-all duration-200'/>
             </button>
           )}
           {/*1, 2, 3*/}
@@ -138,7 +138,7 @@ const MainContent = () => {
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`border w-8 h-8 mx-1 text-xs rounded-sm font-medium cursor-pointer border-black ${page === currentPage ? 'bg-black text-white' : 'bg-transparent text-black'}`}
+                className={`border w-8 h-8 mx-1 text-xs rounded-sm font-medium cursor-pointer ${page === currentPage ? 'bg-[#1C1915] text-[#F2EFE9] border-[#F2EFE9]' : 'bg-[#0D0C0B] border-[#24221F] text-[#8F8A84] hover:bg-[#171614] hover:border-[#45413C] hover:text-[#F2EFE9]'}`}
               >
                 {page}
               </button>
@@ -151,7 +151,7 @@ const MainContent = () => {
               disabled={currentPage === totalPages}
               className="flex justify-center items-center cursor-pointer ml-2 opacity-50"
             >
-              <img src={nextArrow} alt="Next" className="w-2 h-auto" />
+              <MoveRight strokeWidth={1.25} className='w-10 h-6 text-[#A8A29C] hover:text-[#F2EFE9] hover:translate-x-1 transition-all duration-200' />
             </button>
           )}
         </div>

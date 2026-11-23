@@ -1,7 +1,8 @@
+import { X } from 'lucide-react';
+
 import Filters from '../sections/Filters';
 import MainContent from '../sections/MainContent';
 import filtersIcon from '../assets/icons/filters.svg';
-import closeIcon from '../assets/icons/close.svg';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import type { PanInfo } from 'motion/react';
@@ -10,8 +11,8 @@ const Collection = () => {
   const [openFilters, setOpenFilters] = useState<boolean>(false);
 
   return (
-    <section className="max-w-480 px-4 mx-auto pt-4 md:pt-12">
-      <h1 className="text-2xl sm:text-4xl uppercase mt-4 text-center">
+    <section className="max-w-480 px-4 mx-auto py-6 md:py-12 mt-[8svh]">
+      <h1 className=" text-3xl sm:text-5xl leading-[1.08] tracking-[-0.02em] text-[#EDEDED] font-[Cormorant_Garamond] text-center my-5 sm:my-10">
         Collection
       </h1>
       <div className="block sm:hidden">
@@ -20,7 +21,7 @@ const Collection = () => {
           className="flex items-center gap-2 mt-4 text-[#A18A68] cursor-pointer"
         >
           {openFilters ? (
-            <img src={closeIcon} alt="Close filters" className="w-3 h-auto" />
+            <X strokeWidth={1.25} className='w-6 text-[#A8A29C] hover:text-[#F2EFE9] transition-colors duration-200'/>
           ) : (
             <img src={filtersIcon} alt="Open filters" className="w-4 h-auto" />
           )}

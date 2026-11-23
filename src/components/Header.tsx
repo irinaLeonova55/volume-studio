@@ -1,26 +1,19 @@
+import { Menu } from 'lucide-react';
 import Navbar from './Navbar';
-import menuIcon from '../assets/icons/menu.svg';
-import logo from '../assets/icons/logo.svg';
-import { Link } from 'react-router-dom';
+import Button from './Button';
 
-interface BurgerProps {
+interface HeaderProps {
   openBurger: () => void;
+  openModal: () => void;
 }
 
-const Header = ({ openBurger }: BurgerProps) => {
+const Header = ({ openBurger, openModal }: HeaderProps,) => {
   return (
-    <header className="w-full h-[8svh] flex items-center z-50">
-      <div className="flex justify-between w-full items-center max-w-480 text-black px-4 mx-auto /*sm:border-b*/ sm:border-[#D8D8D8]">
-        <div className="flex gap-15">
+    <header className="absolute top-0 left-0 w-full h-[8svh] flex items-center z-50">
+      <div className="flex justify-between w-full items-center max-w-480 text-[#F2EFE9]/70 px-4 mx-auto /*sm:border-b*/ sm:border-[#A8A29C]">
+        <div className="flex items-center justify-center gap-15">
           <a href="/" className="flex items-center">
-            {/*<div className="font-[Allerta_Stencil text-lg sm:text-xl font-medium tracking-wide uppercase focus:outline-none">
-            <span className="text-[#A18A68]">V</span>murals
-          </div>*/}
-            <img
-              src={logo}
-              alt="Volume Studio"
-              className="w-8 h-auto opacity-80"
-            />
+          <div className='text-4xl text-[#F2EFE9] font-[Cormorant_Garamond]'>V</div>
           </a>
           <div className="hidden md:flex justify-center">
             <Navbar extrastyle="gap-10" />
@@ -28,15 +21,11 @@ const Header = ({ openBurger }: BurgerProps) => {
         </div>
 
         <div className="hidden md:flex justify-end items-center">
-          <Link
-            to="/collection"
-            className="w-40 flex justify-center items-center h-8 border-black bg-white text-black font-medium rounded-sm uppercase text-xs border cursor-pointer tracking-wide hover:bg-[#F5F1EA] hover:text-black"
-          >
-            Contact us
-          </Link>
+
+          <Button onClick={openModal} size='sm' text='Contact us' variant='secondary'/>
         </div>
         <button onClick={openBurger} className="block md:hidden cursor-pointer">
-          <img src={menuIcon} alt="Menu" className="w-7 h-auto" />
+          <Menu strokeWidth={1.25} className="w-8 h-auto text-[#F2EFE9]" />
         </button>
       </div>
     </header>

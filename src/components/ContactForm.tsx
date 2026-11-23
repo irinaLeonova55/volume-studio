@@ -34,29 +34,29 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
         placeholder="Your name"
-        className="w-full border-b border-[#D8D8D8] mb-10 pb-3 focus:outline-none"
+        className="w-full border-b border-[#262421] mb-10 pb-3 focus:outline-none"
       />
       <input
         type="email"
         value={userEmail}
         onChange={(e) => setUserEmail(e.target.value)}
         placeholder="Email"
-        className="w-full border-b border-[#D8D8D8] mb-10 pb-3 focus:outline-none"
+        className="w-full border-b border-[#262421] mb-10 pb-3 focus:outline-none"
       />
       <input
         type="tel"
         value={userPhone}
         onChange={(e) => setUserPhone(e.target.value)}
         placeholder="Phone Number"
-        className="w-full border-b border-[#D8D8D8] mb-8 pb-3 focus:outline-none"
+        className="w-full border-b border-[#262421] mb-8 pb-3 focus:outline-none"
       />
-      <Button type="submit" text="Send" />
-      <label className="block mt-6 text-xs text-[#707070]">
+      <Button type="submit" text="Send" size='lg'/>
+      <label className="block mt-6 text-xs text-[#A8A29C]">
         <input
           type="checkbox"
           name="policyCheckbox"
           required
-          className="mr-2 w-3 h-3 accent-[#A18A68]"
+          className="mr-2 w-3 h-3 accent-[#DFBD7A]"
           onChange={(e) => setPolicyCheckbox(e.target.checked)}
           checked={policyCheckbox}
         />

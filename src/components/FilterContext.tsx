@@ -6,10 +6,10 @@ interface FilterContextType {
 
   setSearchQuery: (query: string) => void;
 
-  selectedSpaceType: string;
-  setSelectedSpaceType: Dispatch<SetStateAction<string>>;
-  selectedTechnique: string;
-  setSelectedTechnique: Dispatch<SetStateAction<string>>;
+  selectedSubject: string;
+  setSelectedSubject: Dispatch<SetStateAction<string>>;
+  selectedCategory: string;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
   selectedKeywords: string[];
   setSelectedKeywords: Dispatch<SetStateAction<string[]>>;
 }
@@ -20,8 +20,8 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedSpaceType, setSelectedSpaceType] = useState<string>('');
-  const [selectedTechnique, setSelectedTechnique] = useState<string>('');
+  const [selectedSubject, setSelectedSubject] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 
@@ -30,10 +30,10 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         searchQuery,
         setSearchQuery,
-        selectedSpaceType,
-        setSelectedSpaceType,
-        selectedTechnique,
-        setSelectedTechnique,
+        selectedSubject,
+        setSelectedSubject,
+        selectedCategory,
+        setSelectedCategory,
         selectedKeywords,
         setSelectedKeywords,
       }}

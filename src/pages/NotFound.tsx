@@ -1,15 +1,12 @@
+import Button from "../components/Button";
+
 const NotFound = () => {
   return (
-    <section className="max-w-340 px-4 mx-auto sm:ml-[40%] h-[80svh] flex flex-col items-center sm:items-start justify-center text-center sm:text-left ">
-      <h1 className="text-[33px] font-medium">404 ERROR</h1>
-      <p className="text-[#707070]">This page not found;</p>
-      <p className="text-[#707070]">back to home- and start again</p>
-      <a
-        href="/"
-        className="w-50 flex justify-center items-center h-8 border-black bg-transparent text-black font-medium rounded-sm mt-2 sm:mt-8 uppercase text-xs border cursor-pointer tracking-wide hover:bg-black hover:text-white"
-      >
-        Homepage
-      </a>
+    <section className="max-w-340 px-4 mx-auto sm:ml-[40%] h-[80svh] flex flex-col items-center sm:items-start justify-center text-center sm:text-left mt-[8svh]">
+      <h1 className=" text-3xl sm:text-5xl leading-[1.08] tracking-[-0.02em] text-[#EDEDED] font-[Cormorant_Garamond] text-center mb-5">404 Error</h1>
+      <p>This page not found;</p>
+      <p className="mb-4">back to home and start again</p>
+      <Button size='sm' text='Homepage' href='/'/>
     </section>
   );
 };

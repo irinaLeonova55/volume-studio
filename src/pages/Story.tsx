@@ -2,36 +2,22 @@ import artists from '../assets/images/artists.jpg';
 
 const Story = () => {
   return (
-    <section className="max-w-360 px-4 mx-auto pt-10 sm:pt-24 mb-25 sm:mb-62">
+    <section className="max-w-360 px-4 mx-auto pt-6 sm:pt-12 mb-25 sm:mb-62 mt-[8svh]">
       <div className="flex flex-col justify-center max-w-2xl w-full mx-auto">
-        <h1 className="w-full text-lg sm:text-4xl uppercase mt-4 text-center mb-6">
+        <h1 className=" text-3xl sm:text-5xl leading-[1.08] tracking-[-0.02em] text-[#EDEDED] font-[Cormorant_Garamond] text-center mb-5 sm:mb-10">
           Our Story
         </h1>
 
         <p className="mb-5 sm:mb-10">
-          Our studio specializes in contemporary mural design for architectural
-          and public spaces worldwide. We collaborate with architects, interior
-          designers, developers, hotels, restaurants, and cultural brands to
-          create site-specific artworks that feel deeply connected to their
-          environment.
+          Our studio specializes in contemporary marble sculpture, creating distinctive artworks for private collections, architectural spaces, and cultural environments worldwide. We collaborate with architects, interior designers, collectors, and creative professionals to bring sculptural ideas to life through a thoughtful balance of form, material, and artistic vision.
         </p>
 
         <p className="mb-5 sm:mb-10">
-          We create large-scale murals and artistic surfaces for architectural
-          spaces, hospitality venues, cultural institutions, and public
-          environments. Each project is designed to become part of the
-          architecture itself — shaping atmosphere, movement, and the emotional
-          experience of a place.
+          We create sculptural works that explore the relationship between natural stone, space, and form. Each piece is carefully developed to reveal the unique character of marble, transforming a timeless material into a contemporary artistic expression.
         </p>
         <p className="mb-5 sm:mb-10">
-          Our work balances artistic expression with spatial thinking,
-          transforming walls, facades, and public areas into immersive visual
-          landmarks.
+          Our approach combines traditional sculptural craftsmanship with modern aesthetics, resulting in works that bring depth, character, and a lasting presence to their surroundings.
         </p>
-
-        <h2 className="text-lg sm:text-xl font-medium uppercase tracking-wide text-center mb-6">
-          Our Artists
-        </h2>
         <img
           src={artists}
           alt="About studio"
@@ -39,18 +25,10 @@ const Story = () => {
           className="w-full h-75 rounded-lg mb-10 object-cover"
         />
         <p className="mb-5 sm:mb-10">
-          Our artists come from diverse creative backgrounds including muralism,
-          fine art, illustration, spatial design, and contemporary graphic
-          practices. This multidisciplinary approach allows us to develop visual
-          languages tailored to each project rather than repeating a fixed
-          style.
+          Our artists and craftspeople bring together diverse creative backgrounds in fine art, sculpture, and spatial design. This multidisciplinary perspective allows us to explore different forms, textures, and artistic directions while maintaining a distinctive visual identity.
         </p>
         <p>
-          We work internationally and collaborate with artists across different
-          countries, enabling us to adapt to cultural contexts while maintaining
-          a strong contemporary aesthetic. Whether creating a hand-painted
-          interior mural or a large urban intervention, our team focuses on
-          originality, precision, and lasting visual impact.
+          We work internationally, collaborating with creative professionals and clients across different countries. From expressive sculptural objects to bespoke architectural pieces, our focus remains on material integrity, precision, and the creation of meaningful works that stand the test of time.
         </p>
       </div>
     </section>

@@ -43,11 +43,11 @@ const Navbar = ({ extrastyle, onClick }: NavbarProps) => {
     lg:after:-bottom-1.5
     lg:after:w-full
     lg:after:h-px
-    lg:after:bg-black/80
+    lg:after:bg-[#A8A29C]
     lg:after:origin-left
     lg:after:scale-x-0
     lg:after:transition-transform
-    lg:after:duration-300
+    lg:after:duration-500
     lg:hover:after:scale-x-100"
             >
               {link.text}

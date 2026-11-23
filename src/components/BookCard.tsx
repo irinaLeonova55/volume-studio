@@ -4,20 +4,20 @@ interface BookCardProps {
   id: number;
   title: string;
   image: string;
-  spaceTypeText: string;
-  technique: string;
+  subjectText: string;
+  category: string;
   slug: string;
 }
 
 const BookCard: React.FC<BookCardProps> = ({
   title,
   image,
-  spaceTypeText,
-  technique,
+  subjectText,
+  category,
   slug,
 }) => {
   return (
-    <div className="flex flex-col pb-6 sm:pb-11">
+    <div className="flex flex-col mb-6  border border-[#262421] pb-4">
       <Link to={`/collection/${slug}`}>
         <img
           src={image}
@@ -25,11 +25,11 @@ const BookCard: React.FC<BookCardProps> = ({
           loading="lazy"
           className="w-full aspect-square object-cover rounded-lg"
         />
-        <h2 className="text-lg sm:text-xl font-medium uppercase tracking-wide text-black mt-3 sm:mt-4 mb-1 sm:mb-2">
+        <h2 className="text-lg sm:text-xl font-normal text-center text-[#F2EFE9]/80 mt-3 sm:mt-4 mb-1 sm:mb-2">
           {title}
         </h2>
-        <p className="text-[#707070] font-medium">
-          {spaceTypeText} · {technique}
+        <p className="text-[#A8A29C] font-medium text-center">
+          {subjectText} · {category}
         </p>
       </Link>
     </div>

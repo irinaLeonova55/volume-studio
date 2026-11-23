@@ -24,10 +24,10 @@ const SelectedProject = ({
         <div className="relative w-full flex flex-col-reverse sm:grid sm:grid-cols-[1fr_1fr] gap-6 sm:gap-4">
           <div className="md:sticky md:top-25 md:h-12 w-full grid grid-cols-1 sm:grid-cols-2 sm:gap-3">
             <div className="block w-full">
-              <p className="text-lg sm:text-xl font-medium uppercase tracking-wide">
+              <p className="text-lg sm:text-xl font-medium tracking-wide">
                 {title}
               </p>
-              <p className="text-xs uppercase font-medium tracking-wide">
+              <p className="text-xs font-medium tracking-wide">
                 {spaceTypeText}
               </p>
             </div>

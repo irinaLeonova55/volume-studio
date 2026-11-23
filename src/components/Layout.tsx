@@ -35,10 +35,12 @@ const Layout = () => {
 
   return (
     <div className="w-full mx-auto min-h-full">
-      <Header openBurger={() => setIsBurger(true)} />
-      <main className="bg-white">
+      <Header openBurger={() => setIsBurger(true)} openModal={() => setIsModalOpen(true)} />
+      <main>
         <Outlet context={{ setIsModalOpen }} />
       </main>
+        
+      
       <Footer />
 
       <Modal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
