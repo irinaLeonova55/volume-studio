@@ -149,7 +149,7 @@ function Image({
       <ImageImpl
         ref={imgRef}
         url={url}
-        scale={scale}
+        scale={[scale[0], scale[1]]}
         onPointerEnter={(event) => {
           event.stopPropagation();
           setHoveredCard(idCard);
