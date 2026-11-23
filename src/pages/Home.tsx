@@ -1,5 +1,5 @@
 import Hero from '../sections/Hero';
-import SelectedProjects from '../sections/SelectedProjects';
+{/*import SelectedProjects from '../sections/SelectedProjects';*/}
 import Gallery from '../sections/Gallery';
 import Cta from '../components/Cta';
 import About from '../sections/About';

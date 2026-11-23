@@ -1,10 +1,7 @@
-import { Suspense, useRef, useState, useEffect } from 'react';
+import { Suspense, useRef, useState, useEffect, type RefObject } from 'react';
 import { Image as ImageImpl } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree, Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useScroll, ScrollControls, Scroll } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { artworks } from '../data/artworks';
 
 import clarenceImg from '../assets/images/clarence.png';
 import herculesImg from '../assets/images/hercules-lion.png';
@@ -13,8 +10,23 @@ import prometheusImg from '../assets/images/prometheus.png';
 import parisImg from '../assets/images/paris.jpg';
 import statue1 from '../assets/images/statue1.png';
 
+type Vec3 = [number, number, number];
+
+type CardData = {
+  url: string;
+  x: number;
+  y: number;
+  h: number;
+  aspect: number;
+  z: number;
+};
+
+type PageLayout = {
+  cards: CardData[];
+};
+
 // layout.js
-const pagesLayout = [
+const pagesLayout: PageLayout[] = [
   {
     cards: [
       { url: clarenceImg, x: 0.1, y: 0.17, h: 0.9, aspect: 0.9, z: -1 },
@@ -27,11 +39,10 @@ const pagesLayout = [
     cards: [
       { url: prometheusImg, x: 0.1, y: -0.05, h: 0.6, aspect: 1, z: 0 },
       { url: parisImg, x: 0.45, y: 0.2, h: 0.6, aspect: 1, z: -1 },
-      { url: statue1, x: 0.9, y: 0, h: 1.2,  aspect: 0.9, z: -1 },
+      { url: statue1, x: 0.9, y: 0, h: 1.2, aspect: 0.9, z: -1 },
     ],
   },
 ];
-
 
 function useIsMobile(breakpoint = 1200) {
   const [isMobile, setIsMobile] = useState(
@@ -47,9 +58,11 @@ function useIsMobile(breakpoint = 1200) {
   return isMobile;
 }
 
-const mobileLayout = pagesLayout.flatMap((page) => page.cards.map((card) => ({ cards: [card] })));
+const mobileLayout: PageLayout[] = pagesLayout.flatMap((page) =>
+  page.cards.map((card) => ({ cards: [card] }))
+);
 
-function useScrollProgress(ref) {
+function useScrollProgress(ref: RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -57,24 +70,15 @@ function useScrollProgress(ref) {
       if (!ref.current) return;
 
       const rect = ref.current.getBoundingClientRect();
+      const scrollableDistance = rect.height - window.innerHeight;
+      const scrolled = -rect.top;
 
-      const scrollableDistance =
-        rect.height - window.innerHeight;
-
-      const scrolled =
-        -rect.top;
-
-      const value = THREE.MathUtils.clamp(
-        scrolled / scrollableDistance,
-        0,
-        1
-      );
+      const value = THREE.MathUtils.clamp(scrolled / scrollableDistance, 0, 1);
 
       setProgress(value);
     };
 
     window.addEventListener('scroll', handleScroll);
-
     handleScroll();
 
     return () => {
@@ -85,52 +89,57 @@ function useScrollProgress(ref) {
   return progress;
 }
 
+// у материала drei-Image есть кастомное поле grayscale, в типах three его нет
+type ImageMaterial = THREE.Material & { grayscale: number };
 
+type ImageProps = {
+  imgIndex: number;
+  pageIndex: number;
+  hoveredCard: string | null;
+  setHoveredCard: (id: string | null) => void;
+  position: Vec3;
+  scale: Vec3;
+  url: string;
+};
 
-function Image({ imgIndex, pageIndex, hoveredCard, setHoveredCard, position, scale, url, ...props }) {
-  const groupRef = useRef();
-  const imgRef = useRef();
- 
+function Image({
+  imgIndex,
+  pageIndex,
+  hoveredCard,
+  setHoveredCard,
+  position,
+  scale,
+  url,
+}: ImageProps) {
+  const groupRef = useRef<THREE.Group>(null);
+  const imgRef = useRef<THREE.Mesh>(null);
 
   const idCard = `${pageIndex}-${imgIndex}`;
   const activeCard = hoveredCard !== null;
   const isHovered = hoveredCard === idCard;
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!groupRef.current || !imgRef.current) return;
 
-    const targetZ = position[2] 
+    const material = imgRef.current.material as ImageMaterial;
+
+    const targetZ = position[2];
     groupRef.current.position.z = THREE.MathUtils.damp(
       groupRef.current.position.z,
       targetZ,
       4,
-      delta,
+      delta
     );
 
     const targetGrayscale = activeCard && !isHovered ? 1 : 0;
     const targetOpacity = activeCard && !isHovered ? 0.3 : 1;
 
-    imgRef.current.material.grayscale = THREE.MathUtils.damp(
-      imgRef.current.material.grayscale,
-      targetGrayscale,
-      4,
-      delta,
-    );
-    imgRef.current.material.opacity = THREE.MathUtils.damp(
-      imgRef.current.material.opacity,
-      targetOpacity,
-      4,
-      delta,
-    );
+    material.grayscale = THREE.MathUtils.damp(material.grayscale, targetGrayscale, 4, delta);
+    material.opacity = THREE.MathUtils.damp(material.opacity, targetOpacity, 4, delta);
 
     // hover-пульсация — уравномерный множитель на group, аспект не ломает
     const targetHover = isHovered ? 1.04 : 1;
-    const hover = THREE.MathUtils.damp(
-      groupRef.current.scale.x,
-      targetHover,
-      4,
-      delta,
-    );
+    const hover = THREE.MathUtils.damp(groupRef.current.scale.x, targetHover, 4, delta);
     groupRef.current.scale.setScalar(hover);
   });
 
@@ -141,7 +150,6 @@ function Image({ imgIndex, pageIndex, hoveredCard, setHoveredCard, position, sca
         ref={imgRef}
         url={url}
         scale={scale}
-        {...props}
         onPointerEnter={(event) => {
           event.stopPropagation();
           setHoveredCard(idCard);
@@ -157,31 +165,47 @@ function Image({ imgIndex, pageIndex, hoveredCard, setHoveredCard, position, sca
   );
 }
 
+type PageProps = {
+  cards: CardData[];
+  pageIndex: number;
+  hoveredCard: string | null;
+  setHoveredCard: (id: string | null) => void;
+  isMobile: boolean;
+  position: Vec3;
+};
 
-function Page({ cards, pageIndex, hoveredCard, setHoveredCard, isMobile, ...props }) {
+function Page({
+  cards,
+  pageIndex,
+  hoveredCard,
+  setHoveredCard,
+  isMobile,
+  position,
+}: PageProps) {
   const { width, height } = useThree((state) => state.viewport);
 
   return (
-    <group {...props}>
+    <group position={position}>
       {cards.map((card, i) => {
-         let w, h;
+        let cardPosition: Vec3;
+        let cardScale: Vec3;
 
         if (isMobile) {
-          const maxW = width * 0.9; // отступы по бокам, подбери сам
-          const maxH = height * 0.6;
+          const targetH = height * 0.6;
+          const targetW = targetH * card.aspect;
 
-          // сначала пробуем по высоте
-          h = maxH;
-          w = h * card.aspect;
-
-          // если по ширине не влезает — пересчитываем от ширины
-          if (w > maxW) {
-            w = maxW;
-            h = w / card.aspect;
-          }
+          // если посчитанная ширина больше ширины экрана — ограничиваем по ширине
+          cardScale =
+            targetW > width
+              ? [width, width / card.aspect, 1]
+              : [targetW, targetH, 1];
+          cardPosition = [0, 0, card.z];
         } else {
-          h = card.h * height;
-          w = h * card.aspect;
+          const h = card.h * height;
+          const w = h * card.aspect;
+
+          cardScale = [w, h, 1];
+          cardPosition = [(card.x - 0.5) * width, card.y * height, card.z];
         }
 
         return (
@@ -192,26 +216,8 @@ function Page({ cards, pageIndex, hoveredCard, setHoveredCard, isMobile, ...prop
             hoveredCard={hoveredCard}
             setHoveredCard={setHoveredCard}
             url={card.url}
-            position={
-  isMobile
-    ? [0, 0, card.z ?? 0]
-    : [(card.x - 0.5)* width, card.y * height, card.z ?? 0]
-}
-            scale={
-              isMobile
-    ? (() => {
-        const targetH = height * 0.6;
-        const targetW = targetH * card.aspect;
-        // если посчитанная ширина больше доступной ширины экрана — ограничиваем по ширине
-        const maxW = width; // отступы по бокам
-        if (targetW > maxW) {
-          return [maxW, maxW / card.aspect, 1];
-        }
-        return [targetW, targetH, 1];
-      })()
-    : [w, h, 1]
-
-            }
+            position={cardPosition}
+            scale={cardScale}
           />
         );
       })}
@@ -219,11 +225,11 @@ function Page({ cards, pageIndex, hoveredCard, setHoveredCard, isMobile, ...prop
   );
 }
 
-function Pages({progress}) {
+function Pages({ progress }: { progress: number }) {
   const { width } = useThree((state) => state.viewport);
-  const groupRef = useRef()
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const isMobile = useIsMobile()
+  const groupRef = useRef<THREE.Group>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const layout = isMobile ? mobileLayout : pagesLayout;
   const maxOffset = (layout.length - 1) * width;
@@ -258,31 +264,27 @@ function Pages({progress}) {
   );
 }
 
-
 export default function Gallery() {
-  const sectionRef = useRef();
+  const sectionRef = useRef<HTMLElement>(null);
 
   const progress = useScrollProgress(sectionRef);
 
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
-  const pageCount = isMobile
-  ? mobileLayout.length
-  : pagesLayout.length;
+  const pageCount = isMobile ? mobileLayout.length : pagesLayout.length;
 
   return (
     <section
       ref={sectionRef}
-      className='relative' style={{ height: `${pageCount * 100}svh` }}>
-        <div className='sticky top-0 overflow-hidden h-[90svh] w-full'>
-   
-
+      className="relative"
+      style={{ height: `${pageCount * 100}svh` }}
+    >
+      <div className="sticky top-0 overflow-hidden h-[90svh] w-full">
         <Canvas dpr={[1, 1.5]}>
           <Suspense fallback={null}>
             <Pages progress={progress} />
           </Suspense>
         </Canvas>
-
       </div>
     </section>
   );
