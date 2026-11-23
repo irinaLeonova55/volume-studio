@@ -12,7 +12,7 @@ const Collection = () => {
 
   return (
     <section className="max-w-480 px-4 mx-auto py-6 md:py-12 mt-[8svh]">
-      <h1 className=" text-3xl sm:text-5xl leading-[1.08] tracking-[-0.02em] text-[#EDEDED] font-[Cormorant_Garamond] text-center my-5 sm:my-10">
+      <h1 className=" text-3xl sm:text-5xl leading-[1.08] tracking-[-0.02em] text-[#EDEDED] font-[Cormorant_Garamond] text-center mb-5 sm:mb-10">
         Collection
       </h1>
       <div className="block sm:hidden">
