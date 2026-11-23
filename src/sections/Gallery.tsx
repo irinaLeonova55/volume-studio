@@ -62,8 +62,10 @@ const mobileLayout: PageLayout[] = pagesLayout.flatMap((page) =>
   page.cards.map((card) => ({ cards: [card] }))
 );
 
-function useScrollProgress(ref: RefObject<HTMLElement | null>) {
-  const [progress, setProgress] = useState(0);
+type ProgressRef = { current: number };
+
+function useScrollProgress(ref: RefObject<HTMLElement | null>): ProgressRef {
+  const progress = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,19 +73,14 @@ function useScrollProgress(ref: RefObject<HTMLElement | null>) {
 
       const rect = ref.current.getBoundingClientRect();
       const scrollableDistance = rect.height - window.innerHeight;
-      const scrolled = -rect.top;
 
-      const value = THREE.MathUtils.clamp(scrolled / scrollableDistance, 0, 1);
-
-      setProgress(value);
+      progress.current = THREE.MathUtils.clamp(-rect.top / scrollableDistance, 0, 1);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [ref]);
 
   return progress;
@@ -225,7 +222,7 @@ function Page({
   );
 }
 
-function Pages({ progress }: { progress: number }) {
+function Pages({ progress }: { progress: ProgressRef }) {
   const { width } = useThree((state) => state.viewport);
   const groupRef = useRef<THREE.Group>(null);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -235,20 +232,20 @@ function Pages({ progress }: { progress: number }) {
   const maxOffset = (layout.length - 1) * width;
 
   useFrame((_, delta) => {
-    const targetX = -progress * maxOffset;
+    const targetX = -progress.current * maxOffset;
 
     if (groupRef.current) {
       groupRef.current.position.x = THREE.MathUtils.damp(
         groupRef.current.position.x,
         targetX,
-        4,
+        3,
         delta
       );
     }
   });
 
   return (
-    <group ref={groupRef} position={[-progress * width, 0, 0]}>
+    <group ref={groupRef} >
       {layout.map((page, i) => (
         <Page
           key={i}
