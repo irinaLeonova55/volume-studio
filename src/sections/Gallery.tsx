@@ -1,4 +1,3 @@
-/*import { Suspense, useRef, useState, useEffect, useMemo type RefObject } from 'react';*/
 import { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 import { Image as ImageImpl } from '@react-three/drei';
 import { useFrame, useThree, Canvas } from '@react-three/fiber';
@@ -63,29 +62,6 @@ const mobileLayout: PageLayout[] = pagesLayout.flatMap((page) =>
   page.cards.map((card) => ({ cards: [card] }))
 );
 
-type ProgressRef = { current: number };
-
-function useScrollProgress(ref: RefObject<HTMLElement | null>): ProgressRef {
-  const progress = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ref.current) return;
-
-      const rect = ref.current.getBoundingClientRect();
-      const scrollableDistance = rect.height - window.innerHeight;
-
-      progress.current = THREE.MathUtils.clamp(-rect.top / scrollableDistance, 0, 1);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [ref]);
-
-  return progress;
-}
 
 // у материала drei-Image есть кастомное поле grayscale, в типах three его нет
 type ImageMaterial = THREE.Material & { grayscale: number };
@@ -223,72 +199,7 @@ function Page({
   );
 }
 
-/*function Pages({ progress }: { progress: ProgressRef }) {
-  const { width } = useThree((state) => state.viewport);
-  const groupRef = useRef<THREE.Group>(null);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const isMobile = useIsMobile();
-
-  const layout = isMobile ? mobileLayout : pagesLayout;
-  const maxOffset = (layout.length - 1) * width;
-
-  useFrame((_, delta) => {
-    const targetX = -progress.current * maxOffset;
-
-    if (groupRef.current) {
-      groupRef.current.position.x = THREE.MathUtils.damp(
-        groupRef.current.position.x,
-        targetX,
-        3,
-        delta
-      );
-    }
-  });
-
-  return (
-    <group ref={groupRef} >
-      {layout.map((page, i) => (
-        <Page
-          key={i}
-          pageIndex={i}
-          cards={page.cards}
-          hoveredCard={hoveredCard}
-          setHoveredCard={setHoveredCard}
-          isMobile={isMobile}
-          position={[width * i, 0, 0]}
-        />
-      ))}
-    </group>
-  );
-}
-
-export default function Gallery() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const progress = useScrollProgress(sectionRef);
-
-  const isMobile = useIsMobile();
-
-  const pageCount = isMobile ? mobileLayout.length : pagesLayout.length;
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative"
-      style={{ height: `${pageCount * 100}svh` }}
-    >
-      <div className="sticky top-0 overflow-hidden h-[90svh] w-full">
-        <Canvas dpr={[1, 1.5]}>
-          <Suspense fallback={null}>
-            <Pages progress={progress} />
-          </Suspense>
-        </Canvas>
-      </div>
-    </section>
-  );
-}*/
-
-const SPEED_DESKTOP = 0.05;
+const SPEED_DESKTOP = 0.08;
 const SPEED_MOBILE = 0.15;
 
 const GAP = 0.3;      // пустой промежуток между концом и началом круга, в ширинах экрана (только десктоп)
