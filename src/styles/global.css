@@ -45,7 +45,6 @@
 html {
   user-select: none;
   /*overflow-x: hidden;*/
-  scroll-behavior: smooth;
 
   scrollbar-width: thin;
   scrollbar-color: rgb(239, 239, 239) transparent;

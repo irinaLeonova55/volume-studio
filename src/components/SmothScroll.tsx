@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 
 const SmoothScroll = () => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.9,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1,
+     lerp: 0.07,        
+     smoothWheel: true,
+     wheelMultiplier: 1,
     });
+
 
     let frameId: number;
 
@@ -24,6 +25,8 @@ const SmoothScroll = () => {
       lenis.destroy();
     };
   }, []);
+
+  
 
   return null;
 };

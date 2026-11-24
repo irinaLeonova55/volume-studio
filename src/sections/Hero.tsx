@@ -27,7 +27,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-t from-[#020202]/40 via-transparent to-transparent z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-t from-[#020202]/40 via-transparent to-transparent z-10"/>
 
       <div
         className={`relative h-[70svh] lg:h-screen w-full transition-opacity duration-2000 ease-linear `}
